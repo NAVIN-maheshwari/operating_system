@@ -1,5 +1,5 @@
 //This is a pefect example for explaining difference between signal and broadcast 
-
+// brodcast
 
 #include<stdio.h>
 #include<pthread.h>
