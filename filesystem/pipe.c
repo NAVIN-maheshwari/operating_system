@@ -20,11 +20,23 @@ int main()
     {
         /*Child process*/
 
-        printf("Fds of child : %d  and %d\n",fd[0],fd[1]);
+       close(fd[1]);
+
+       int x;
+       printf("Write into a pipe\n");
+       scanf("%d",&x);
+
+       write(fd[0],&x,sizeof(int));
+
+       close(fd[0]);
     }
     else {
 
         /*Parent process*/
-        printf("Fds of parent : %d  and %d\n",fd[0],fd[1]);
+        close(fd[0]);
+        int y;
+        read(fd[1],&y,sizeof(int));
+
+        printf("Got from child %d\n",y);
     }
 }
