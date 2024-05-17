@@ -57,6 +57,7 @@ int main()
     
     
     printf("%d",count);
+    pthread_cond_destroy(&cv);
     pthread_mutex_destroy(&mutex);
     
 }

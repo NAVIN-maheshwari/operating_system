@@ -4,7 +4,6 @@
 
 pthread_rwlock_t lock;
 int count = 0;
-pthread_mutex_t mutex;
 void* writer()
 {
     for (int i = 0; i < 10; i++)
@@ -50,7 +49,7 @@ int main()
     {
         if(i <= 1)
         {
-          pthread_create(th+i,NULL,&writer,NULL);
+          pthread_create(&th[i],NULL,&writer,NULL);
         }
         else{
             pthread_create(th+i,NULL,&reader,NULL);
