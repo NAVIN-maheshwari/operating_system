@@ -12,6 +12,6 @@
 
 1. Syntax :-
     1. wait()     = wait(int *status)
-    2. waitpid()  = waitpid(pid_t pid, int *stat_loc, int options)
+    2. waitpid()  = waitpid(pid_t pid, int *status, int options)
 
 */

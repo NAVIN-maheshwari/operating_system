@@ -1,9 +1,19 @@
 
+/*
+1.pwrite :- write at specifide place (value of offset) 
+  
+  all things are similer to write
+
+  only one thing offset;
+
+  if i have 30 bytes in file  and i want to write "hello" at 10th position then offset value = 10
+
+*/
 #include<stdio.h>
 #include<fcntl.h>
 #include<unistd.h>
 
-char* buffer = "i am a student of delhi university";
+char* buffer = "hello";
 int main()
 {
    const char*path = "C:\\Users\\Navin\\Desktop\\os\\filesystem\\abc.txt";
@@ -16,7 +26,7 @@ int main()
        
        printf("Writing in a file\n");
 
-       int x = pwrite(file_discriptor,buffer,34,15);
+       int x = pwrite(file_discriptor,buffer,5,15);
        
        if(x == -1)
        {

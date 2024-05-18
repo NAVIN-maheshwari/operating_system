@@ -4,6 +4,10 @@
 
 // trylock return 0 if it is successful in locking  else return errno
 
+//in case of lock:- if there is already locked then lock wait for unlocking
+
+//if you want to understand the working of lock then replace lock with trylock
+
 */
 
 #include<stdio.h>
@@ -23,7 +27,7 @@ void* myfun()
     if(pthread_mutex_trylock(&mutex)==0)
     {
         printf("locked successfully\n");
-        sleep(1);
+        sleep(5);
 
         /*Unlocking here*/
         pthread_mutex_unlock(&mutex);
@@ -38,6 +42,8 @@ int main()
 
     /* Four process are created here */
     pthread_t th[4];
+
+    pthread_mutex_init(&mutex,NULL);
 
     for(int i = 0 ;i < 4 ; i++)
     {
@@ -57,4 +63,6 @@ int main()
             return 2;
         }
     }
+
+     pthread_mutex_destroy(&mutex);
 }

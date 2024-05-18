@@ -81,13 +81,13 @@ System calls needed for files and its syntax :-
 
       3.flag :-
 
-          1.F_DUPED :- Make exact copy of file discriptor
+          1.F_DUPFD :- Make exact copy of file discriptor  *
           2.F_GETFD :- Return file discriptor
           3.F_SETFD :- Set file discriptor 
           4.F_GETFL :- get status flag
           5.F_SETFL :- get status flag
 
-4.Link :- Creates a duplicate (new path) of given file
+4.Link :- Creates a duplicate (copy) of given file
    
       1. Syntax :-
 
@@ -106,7 +106,7 @@ System calls needed for files and its syntax :-
           #include<unistd.h>
 
 
-5.Unlink :-Remove a path / Contradict of link
+5.Unlink :- Remove a path duplicate copy / Contradict of link
 
       1. Syntax:-
 
@@ -141,7 +141,7 @@ System calls needed for files and its syntax :-
           
            #include<unistd.h>
         
- 7.write :- Read from file
+ 7.write :-Write into a file
    
        1.Syntax:-
          
@@ -159,7 +159,7 @@ System calls needed for files and its syntax :-
           
            #include<unistd.h>
 
- 8.lseek :- Move cursor of file (Bydefault the cursor is set to topleft corner)   
+ 8.lseek :- Move cursor of file (By default the cursor is set to end of content when writing else set to top left corner)   
 
        
           1.syntax:-
@@ -189,7 +189,23 @@ System calls needed for files and its syntax :-
 9.pwrite :-
 10.access:-
 11.close :-
-12.dup   :-
-13.dup2   :-
+
+
+12.dup    :-  Duplicates an file discriptor
+13.dup2   :-  Both are similar dup and dup2
+
+         1.Syntax:-
+             
+             int dup(int file discriptor);
+             int dup2(int fd1, int fd2);
+
+         2.Return value:-
+
+             File discriptor of success
+             -1 or error if faild    
+
+14.mkdir:-
+15.mknode:-
+16.INODE :- information releted to file             
 
 */
