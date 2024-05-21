@@ -49,8 +49,7 @@ void* fun1()
       sem_wait(&semaphore);  //locking
        count++;
       sem_post(&semaphore);  //unlocking
-     }
-     
+     }   
      
 }
 int main(int argc, char const *argv[])

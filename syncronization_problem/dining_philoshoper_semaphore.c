@@ -15,6 +15,7 @@ void* myfun(void*arg)
     sem_wait(&chopstick[i]);
 
     //sleep(1) //<---------- if you uncomment this then all the thread stuck in a deadlock 
+    
     sem_wait(&chopstick[(i+1)%5]);
 
     printf("rice eaten %d\n",i);
