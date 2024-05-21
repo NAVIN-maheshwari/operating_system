@@ -38,14 +38,14 @@ void* reader()
 
 int main()
 {
-    pthread_t th[4];
+    pthread_t th[5];
 
 
   //Creating a 5 thread 2 reader 3 writer
 
     pthread_rwlock_init(&lock,NULL);
  
-    for(int i = 0 ;i < 4 ; i++)
+    for(int i = 0 ;i < 5 ; i++)
     {
         if(i <= 1)
         {
@@ -57,7 +57,7 @@ int main()
         }
     }
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 5; i++)
     {
          pthread_join(th[i],NULL);
     }
