@@ -45,14 +45,17 @@ void *reader()
 
     printf("Reader entered\n");
 
+    sleep(1);
+
     printf("Read content\n");
 
-    sleep(1);
+    sem_wait(&read);
     read_count--;
     if (read_count == 0)
     {
       sem_post(&write);
     }
+    sem_post(&read);
 
     printf("Reader exit\n");
   }

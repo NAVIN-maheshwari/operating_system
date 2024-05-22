@@ -38,16 +38,19 @@ void *reader()
     pthread_mutex_unlock(&read);
 
     printf("Reader entered\n");
+  
+    sleep(1);
 
     printf("Read content\n");
 
-    sleep(1);
+
+    pthread_mutex_lock(&read);
     read_count--;
     if (read_count == 0)
     {
       pthread_mutex_unlock(&write);
     }
-
+    pthread_mutex_unlock(&read);   
     printf("Reader exit\n");
   }
 }
