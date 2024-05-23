@@ -23,7 +23,7 @@ _execve(const char *path, argv, environment);
 
 _execlp(const char *filename, argv[0] ,argv[1]... argv[n-1] );
 
-_execvp(const char *filename,argv[0] , argv[1] ... argv[n-1]);
+_execvp(const char *filename,argv);
 
 _fexecve(int fd, argv, environment); 
 

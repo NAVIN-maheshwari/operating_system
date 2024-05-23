@@ -2,9 +2,10 @@
 #include <pthread.h>
 #include <sys/types.h>
 #include<stdlib.h>
+#include<unistd.h>
 
-pthread_mutex_t read;
-pthread_mutex_t write;
+pthread_mutex_t read_lock;
+pthread_mutex_t write_lock;
 
 int read_count = 0;
 int count = 0;
@@ -12,14 +13,14 @@ void *writer()
 {
   for (int i = 0; i < 10; i++)
   {
-    pthread_mutex_lock(&write);
+    pthread_mutex_lock(&write_lock);
 
     printf("Writer entered\n");
     count++;
     printf("Write content\n");
     sleep(1);
 
-    pthread_mutex_unlock(&write);
+    pthread_mutex_unlock(&write_lock);
 
     printf("Writer exit\n");
   }
@@ -29,13 +30,13 @@ void *reader()
   for (int i = 0; i < 10; i++)
   {
 
-    pthread_mutex_lock(&read);
+    pthread_mutex_lock(&read_lock);
     read_count++;
     if (read_count == 1)
     {
-      pthread_mutex_lock(&write);
+      pthread_mutex_lock(&write_lock);
     }
-    pthread_mutex_unlock(&read);
+    pthread_mutex_unlock(&read_lock);
 
     printf("Reader entered\n");
   
@@ -44,13 +45,13 @@ void *reader()
     printf("Read content\n");
 
 
-    pthread_mutex_lock(&read);
+    pthread_mutex_lock(&read_lock);
     read_count--;
     if (read_count == 0)
     {
-      pthread_mutex_unlock(&write);
+      pthread_mutex_unlock(&write_lock);
     }
-    pthread_mutex_unlock(&read);   
+    pthread_mutex_unlock(&read_lock);   
     printf("Reader exit\n");
   }
 }
@@ -61,8 +62,8 @@ int main()
 
   // Creating a 5 thread 2 reader 3 writer
 
-  pthread_mutex_init(&read, NULL);
-  pthread_mutex_init(&write,NULL);
+  pthread_mutex_init(&read_lock, NULL);
+  pthread_mutex_init(&write_lock,NULL);
 
   for (int i = 0; i < 5; i++)
   {
@@ -81,6 +82,6 @@ int main()
     pthread_join(th[i], NULL);
   }
 
-  pthread_mutex_destroy(&read);
-  pthread_mutex_destroy(&write);
+  pthread_mutex_destroy(&read_lock);
+  pthread_mutex_destroy(&write_lock);
 }
